@@ -1,7 +1,8 @@
 import React, { useState, Fragment } from "react";
+import { GoogleMap, withGoogleMap, Marker } from "react-google-maps";
 
 const api = {
-  key: "aa68ac6e012140a87e400e90baf07641",
+  key: process.env.REACT_APP_WEATHER_KEY,
   base: "https://api.openweathermap.org/data/2.5/"
 };
 
@@ -54,6 +55,15 @@ function App() {
     return `${day} ${date} ${month} ${year}`;
   };
 
+  const MapWithAMarker = withGoogleMap(props => (
+    <GoogleMap
+      defaultZoom={8}
+      defaultCenter={{ lat: props.mapLat, lng: props.mapLon }}
+    >
+      <Marker position={{ lat: props.mapLat, lng: props.mapLon }} />
+    </GoogleMap>
+  ));
+
   return (
     <div
       className={
@@ -86,6 +96,17 @@ function App() {
               <div className="temp">{Math.round(weather.main.temp)}&deg; F</div>
               <div className="weather">{weather.weather[0].main}</div>
             </div>
+
+            <MapWithAMarker
+              containerElement={<div style={{ height: `400px` }} />}
+              mapElement={<div style={{ height: `100%` }} />}
+              mapLat={
+                typeof weather.main != "undefined" ? weather.coord.lat : 7
+              }
+              mapLon={
+                typeof weather.main != "undefined" ? weather.coord.lon : 7
+              }
+            />
           </Fragment>
         ) : (
           ""
