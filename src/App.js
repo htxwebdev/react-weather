@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { GoogleMap, withGoogleMap, Marker } from "react-google-maps";
+import Icon from "./icons";
 
 const api = {
   key: process.env.REACT_APP_WEATHER_KEY,
@@ -92,11 +93,14 @@ function App() {
               </div>
               <div className="date">{dateBuilder(new Date())}</div>
             </div>
+
             <div className="weather-box">
               <div className="temp">{Math.round(weather.main.temp)}&deg; F</div>
               <div className="weather">{weather.weather[0].main}</div>
             </div>
-
+            <div className="weather-icon">
+              <Icon name={"sun"} />
+            </div>
             <MapWithAMarker
               containerElement={<div style={{ height: `400px` }} />}
               mapElement={<div style={{ height: `100%` }} />}
