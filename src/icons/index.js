@@ -7,16 +7,16 @@ import Storm from "./Storm";
 
 const Icon = props => {
   switch (props.name) {
-    case "sun":
+    case "Clear":
       return <Sun {...props} />;
-    case "cloud":
+    case "Clouds":
       return <Cloud {...props} />;
-    case "rain":
+    case "Rain":
       return <Rain {...props} />;
-    case "storm":
+    case "Thunderstorm":
       return <Storm {...props} />;
     default:
-      break;
+      return <div></div>;
   }
 };
 

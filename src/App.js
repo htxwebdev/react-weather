@@ -18,7 +18,7 @@ function App() {
         .then(result => {
           setWeather(result);
           setQuery("");
-          // console.log(result);
+          console.log(result);
         });
     }
   };
@@ -99,7 +99,7 @@ function App() {
               <div className="weather">{weather.weather[0].main}</div>
             </div>
             <div className="weather-icon">
-              <Icon name={"sun"} />
+              <Icon name={weather.weather[0].main} />
             </div>
             <MapWithAMarker
               containerElement={<div style={{ height: `400px` }} />}
