@@ -9,10 +9,23 @@ body {
 }
 
 .app {
-  background-color: #b9d7fa;
+  background-image: url(./assets/clear.jpg);
+  background-size: cover;
 
-  &.warm {
-    background-color: #faa13c;
+  &.clear {
+    background-image: url(./assets/clear.jpg);
+  }
+
+  &.clouds {
+    background-image: url(./assets/clouds.jpg);
+  }
+
+  &.rain {
+    background-image: url(./assets/rain.jpg);
+  }
+
+  &.thunderstorm {
+    background-image: url(./assets/storm.jpg);
   }
 }
 
@@ -20,7 +33,7 @@ main {
   min-height: 100vh;
   background-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.1),
     rgba(0, 0, 0, 0.75)
   );
   padding: 25px;
@@ -77,10 +90,6 @@ main {
   }
 }
 
-.weather-icon {
-  width: 40%;
-  margin: 0 auto;
-}
 .weather-box {
   text-align: center;
 
@@ -107,5 +116,39 @@ main {
     font-size: 48px;
     font-weight: 700;
     text-shadow: 3px 3px rgba(50, 50, 75, 0.5);
+  }
+}
+
+.weather-info {
+  position: relative;
+  width: 80%;
+  display: inline-block;
+  margin: 30px auto;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+
+  padding: 15px 25px;
+
+  color: #fff;
+
+  .label,
+  .data {
+    width: 50%;
+    float: left;
+    padding: 1rem;
+    font-size: 20px;
+  }
+
+  .label {
+    border-right: 1px solid white;
+  }
+
+  .weather-icon-text {
+    font-size: 3rem;
+    border-bottom: 1px solid white;
+    padding: 1rem;
+  }
+  .weather-icon {
+    margin: -2rem 0 -3rem 0;
   }
 }

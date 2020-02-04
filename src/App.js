@@ -69,9 +69,7 @@ function App() {
     <div
       className={
         typeof weather.main != "undefined"
-          ? weather.main.temp > 80
-            ? "app warm"
-            : "app"
+          ? `app ${weather.weather[0].main.toLowerCase()}`
           : "app"
       }
     >
@@ -96,10 +94,30 @@ function App() {
 
             <div className="weather-box">
               <div className="temp">{Math.round(weather.main.temp)}&deg; F</div>
-              <div className="weather">{weather.weather[0].main}</div>
-            </div>
-            <div className="weather-icon">
-              <Icon name={weather.weather[0].main} />
+              <div className="weather"></div>
+
+              <div className="weather-info">
+                <div className="conditions">
+                  <div className="weather-icon">
+                    <Icon name={weather.weather[0].main} />
+                  </div>
+                  <div className="weather-icon-text">
+                    {weather.weather[0].main}
+                  </div>
+                </div>
+                <div className="feels-like">
+                  <div className="label">Feels like</div>
+                  <div className="data">{weather.main.feels_like}</div>
+                </div>
+                <div className="humidity">
+                  <div className="label">Humidity</div>
+                  <div className="data">{weather.main.humidity}</div>
+                </div>
+                <div className="wind">
+                  <div className="label">Wind</div>
+                  <div className="data">{weather.wind.speed}</div>
+                </div>
+              </div>
             </div>
             <MapWithAMarker
               containerElement={<div style={{ height: `400px` }} />}
