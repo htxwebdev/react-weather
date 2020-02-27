@@ -10,6 +10,7 @@ const api = {
 function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
+  const [forecast, setForecast] = useState({})
 
   const search = evt => {
     if (evt.key === "Enter") {
@@ -17,6 +18,14 @@ function App() {
         .then(res => res.json())
         .then(result => {
           setWeather(result);
+          setQuery("");
+          console.log(result);
+        });
+
+      fetch(`${api.base}forecast?q=${query}&units=imperial&APPID=${api.key}`)
+        .then(res => res.json())
+        .then(result => {
+          setForecast(result);
           setQuery("");
           console.log(result);
         });
@@ -90,6 +99,7 @@ function App() {
                 {weather.name}, {weather.sys.country}
               </div>
               <div className="date">{dateBuilder(new Date())}</div>
+              <p>Forecast: </p>
             </div>
 
             <div className="weather-box">
@@ -119,6 +129,13 @@ function App() {
                 </div>
               </div>
             </div>
+
+            {typeof forecast.list != "undefined" ? (
+              <div className="forecast">
+                {forecast.city.name}
+                <p>{dateBuilder(new Date(forecast.list[0].dt * 1000))}</p>
+              </div>
+            ) : ("")}
             <MapWithAMarker
               containerElement={<div style={{ height: `400px` }} />}
               mapElement={<div style={{ height: `100%` }} />}
@@ -131,8 +148,8 @@ function App() {
             />
           </Fragment>
         ) : (
-          ""
-        )}
+            ""
+          )};
       </main>
     </div>
   );
