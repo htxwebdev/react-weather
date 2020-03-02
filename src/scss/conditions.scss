@@ -1,0 +1,40 @@
+.conditions {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    color: #fff;
+
+    .icon {
+        .weather-icon {
+            padding-left: 2rem;
+            svg {
+                height: 12rem;
+            }
+        }
+
+        .weather-icon-text {
+            margin-left: 5rem;
+            margin-top: -1rem;
+            font-size: 2rem;
+        }
+    }
+
+    .info {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: 6rem;
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            .label {
+                font-size: .8rem;
+                color: lightgrey;
+            }
+    
+            .data {
+                margin-bottom: .5rem;
+            }
+        }
+    }
+}

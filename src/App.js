@@ -2,6 +2,8 @@ import React, { useState, Fragment } from "react";
 import { GoogleMap, withGoogleMap, Marker } from "react-google-maps";
 import Icon from "./icons";
 
+import ForecastList from './components/ForecastList';
+
 const api = {
   key: process.env.REACT_APP_WEATHER_KEY,
   base: "https://api.openweathermap.org/data/2.5/"
@@ -62,8 +64,10 @@ function App() {
     let month = months[d.getMonth()];
     let year = d.getFullYear();
 
-    return `${day} ${date} ${month} ${year}`;
+    return <div>{day} {date}<br />{month} {year}</div>;
   };
+
+
 
   const MapWithAMarker = withGoogleMap(props => (
     <GoogleMap
@@ -84,8 +88,10 @@ function App() {
     >
       <main>
         <div className="search-box">
+          <label htmlFor="search-bar">Location:</label>
           <input
             type="text"
+            id="search-bar"
             className="search-bar"
             placeholder="Search..."
             onChange={e => setQuery(e.target.value)}
@@ -95,19 +101,14 @@ function App() {
         {typeof weather.main != "undefined" ? (
           <Fragment>
             <div className="location-box">
-              <div className="location">
-                {weather.name}, {weather.sys.country}
-              </div>
               <div className="date">{dateBuilder(new Date())}</div>
-              <p>Forecast: </p>
             </div>
-
+            <div className="temp-box">
+              <div className="temp">{Math.round(weather.main.temp)}&deg;</div>
+            </div>
             <div className="weather-box">
-              <div className="temp">{Math.round(weather.main.temp)}&deg; F</div>
-              <div className="weather"></div>
-
-              <div className="weather-info">
-                <div className="conditions">
+              <div className="conditions">
+                <div className="icon">
                   <div className="weather-icon">
                     <Icon name={weather.weather[0].main} />
                   </div>
@@ -115,27 +116,28 @@ function App() {
                     {weather.weather[0].main}
                   </div>
                 </div>
-                <div className="feels-like">
-                  <div className="label">Feels like</div>
-                  <div className="data">{weather.main.feels_like}</div>
-                </div>
-                <div className="humidity">
-                  <div className="label">Humidity</div>
-                  <div className="data">{weather.main.humidity}</div>
-                </div>
-                <div className="wind">
-                  <div className="label">Wind</div>
-                  <div className="data">{weather.wind.speed}</div>
+                <div className="info">
+                  <div className="row">
+                    <div className="label">Feels like</div>
+                    <div className="data">{weather.main.feels_like}</div>
+                  </div>
+                  <div className="row">
+                    <div className="label">Humidity</div>
+                    <div className="data">{weather.main.humidity}</div>
+                  </div>
+                  <div className="row">
+                    <div className="label">Wind</div>
+                    <div className="data">{weather.wind.speed}</div>
+                  </div>
                 </div>
               </div>
+              {typeof forecast.list != "undefined" ? (
+
+                <ForecastList forecastday={forecast.list} />
+              ) : ("")}
             </div>
 
-            {typeof forecast.list != "undefined" ? (
-              <div className="forecast">
-                {forecast.city.name}
-                <p>{dateBuilder(new Date(forecast.list[0].dt * 1000))}</p>
-              </div>
-            ) : ("")}
+
             <MapWithAMarker
               containerElement={<div style={{ height: `400px` }} />}
               mapElement={<div style={{ height: `100%` }} />}

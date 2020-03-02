@@ -1,0 +1,27 @@
+.search-box {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 1rem;
+    color: #fff;
+
+    .search-bar {
+      display: block;
+      padding: 15px;
+  
+      appearance: none;
+      background: none;
+      border: none;
+      border-bottom: 2px solid #fff;
+      outline: none;
+  
+      margin-top: -25px;
+
+      font-size: 20px;
+      color: #fff;
+      transition: 1.4s ease;
+  
+      &:focus {
+        background-color: rgba(255, 255, 255, 0.75);
+      }
+    }
+  }
