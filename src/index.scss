@@ -17,6 +17,10 @@ body {
   background-color: black;
   background-size: cover;
 
+  .weather-box {
+    background-image: url(./assets/clouds.jpg);
+  }
+  
   &.clear .weather-box {
     background-image: url(./assets/clear.jpg);
   }
@@ -56,7 +60,8 @@ main {
 
 .weather-box {
   background-size: cover;
-  border-radius: 50px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
   box-shadow:inset 0 0 0 2000px rgba(2, 3, 63, 0.3);
 }
 

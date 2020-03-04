@@ -5,7 +5,15 @@
     padding: 2rem;
     background-color: #3338BE;
     border-radius: 20px;
-    font-size: 4rem;
     color: #fff;
-    z-index: 100
+    text-align: center;
+    z-index: 100;
+
+    .temp {
+        font-size: 5rem;
+    }
+
+    .sub-temp {
+        font-size: .8rem;
+    }
 }

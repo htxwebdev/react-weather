@@ -22,11 +22,7 @@ const Icon = props => {
     case "Fog":
       return <Fog {...props} />;
     default:
-      return (
-        <div>
-          <p></p>
-        </div>
-      );
+      return <Cloud {...props} />;
   }
 };
 

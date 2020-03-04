@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Icon from '../icons'
+
 const ForecastList = ({ forecastday }) => {
     const dayBuilder = d => {
         let days = [
@@ -16,12 +18,15 @@ const ForecastList = ({ forecastday }) => {
 
         return `${day}`;
     };
+    let filteredForecast = forecastday.filter(function (value, index, Arr) {
+        return index % 8 == 0;
+    });
     return (
         <div className="forecast">
-            {forecastday.map((day, index) => (
+            {filteredForecast.map((day, index) => (
                 <div className="row" key={index}>
                     <div className="day">{dayBuilder(new Date(day.dt * 1000))}</div>
-                    <div className="icon">{day.weather[0].main}</div>
+                    <div className="icon"><Icon name={day.weather[0].main} /></div>
                     <div className="temp">{day.main.temp_min} | {day.main.temp_max}</div>
                 </div>
             ))}

@@ -1,11 +1,19 @@
 .forecast {
     display: grid;
-    
+    padding: 2rem;
     color: #fff;
 
     .row {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        padding: 2rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid white;
+
+        .icon {
+            svg {
+                height: 3rem;
+                margin: -1rem 0;
+            }
+        }
     }
 }

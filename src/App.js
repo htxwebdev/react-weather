@@ -105,6 +105,7 @@ function App() {
             </div>
             <div className="temp-box">
               <div className="temp">{Math.round(weather.main.temp)}&deg;</div>
+              <div className="sub-temp">LOW {Math.round(weather.main.temp_min)} / HIGH {Math.round(weather.main.temp_max)}</div>
             </div>
             <div className="weather-box">
               <div className="conditions">
