@@ -5,14 +5,15 @@
 
     .icon {
         .weather-icon {
-            padding-left: 2rem;
+            text-align: center;
+            
             svg {
                 height: 12rem;
             }
         }
 
         .weather-icon-text {
-            margin-left: 5rem;
+            text-align: center;
             margin-top: -1rem;
             font-size: 2rem;
         }

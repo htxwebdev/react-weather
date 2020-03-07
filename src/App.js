@@ -100,55 +100,57 @@ function App() {
         </div>
         {typeof weather.main != "undefined" ? (
           <Fragment>
-            <div className="location-box">
-              <div className="date">{dateBuilder(new Date())}</div>
-            </div>
-            <div className="temp-box">
-              <div className="temp">{Math.round(weather.main.temp)}&deg;</div>
-              <div className="sub-temp">LOW {Math.round(weather.main.temp_min)} / HIGH {Math.round(weather.main.temp_max)}</div>
-            </div>
-            <div className="weather-box">
-              <div className="conditions">
-                <div className="icon">
-                  <div className="weather-icon">
-                    <Icon name={weather.weather[0].main} />
-                  </div>
-                  <div className="weather-icon-text">
-                    {weather.weather[0].main}
-                  </div>
-                </div>
-                <div className="info">
-                  <div className="row">
-                    <div className="label">Feels like</div>
-                    <div className="data">{weather.main.feels_like}</div>
-                  </div>
-                  <div className="row">
-                    <div className="label">Humidity</div>
-                    <div className="data">{weather.main.humidity}</div>
-                  </div>
-                  <div className="row">
-                    <div className="label">Wind</div>
-                    <div className="data">{weather.wind.speed}</div>
-                  </div>
-                </div>
+            <div className="main-area">
+              <div className="location-box">
+                <div className="date">{dateBuilder(new Date())}</div>
               </div>
-              {typeof forecast.list != "undefined" ? (
+              <div className="temp-box">
+                <div className="temp">{Math.round(weather.main.temp)}&deg;</div>
+                <div className="sub-temp">LOW {Math.round(weather.main.temp_min)} / HIGH {Math.round(weather.main.temp_max)}</div>
+              </div>
+              <div className="weather-box">
+                <div className="conditions">
+                  <div className="icon">
+                    <div className="weather-icon">
+                      <Icon name={weather.weather[0].icon} />
+                    </div>
+                    <div className="weather-icon-text">
+                      {weather.weather[0].main}
+                    </div>
+                  </div>
+                  <div className="info">
+                    <div className="row">
+                      <div className="label">Feels like</div>
+                      <div className="data">{Math.round(weather.main.feels_like)}&deg;</div>
+                    </div>
+                    <div className="row">
+                      <div className="label">Humidity</div>
+                      <div className="data">{weather.main.humidity}</div>
+                    </div>
+                    <div className="row">
+                      <div className="label">Wind</div>
+                      <div className="data">{weather.wind.speed}</div>
+                    </div>
+                  </div>
+                </div>
+                {typeof forecast.list != "undefined" ? (
 
-                <ForecastList forecastday={forecast.list} />
-              ) : ("")}
+                  <ForecastList forecastday={forecast.list} />
+                ) : ("")}
+              </div>
             </div>
-
-
-            <MapWithAMarker
-              containerElement={<div style={{ height: `400px` }} />}
-              mapElement={<div style={{ height: `100%` }} />}
-              mapLat={
-                typeof weather.main != "undefined" ? weather.coord.lat : 7
-              }
-              mapLon={
-                typeof weather.main != "undefined" ? weather.coord.lon : 7
-              }
-            />
+            <div className="sub-area">
+              <MapWithAMarker
+                containerElement={<div style={{ height: `400px`, margin: `2rem` }} />}
+                mapElement={<div style={{ height: `100%` }} />}
+                mapLat={
+                  typeof weather.main != "undefined" ? weather.coord.lat : 7
+                }
+                mapLon={
+                  typeof weather.main != "undefined" ? weather.coord.lon : 7
+                }
+              />
+            </div>
           </Fragment>
         ) : (
             ""

@@ -9,6 +9,10 @@
     text-align: center;
     z-index: 100;
 
+    @media (min-width: 768px) {
+        top: 1rem;
+    }
+
     .temp {
         font-size: 5rem;
     }

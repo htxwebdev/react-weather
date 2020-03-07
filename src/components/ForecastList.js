@@ -26,8 +26,8 @@ const ForecastList = ({ forecastday }) => {
             {filteredForecast.map((day, index) => (
                 <div className="row" key={index}>
                     <div className="day">{dayBuilder(new Date(day.dt * 1000))}</div>
-                    <div className="icon"><Icon name={day.weather[0].main} /></div>
-                    <div className="temp">{day.main.temp_min} | {day.main.temp_max}</div>
+                    <div className="icon"><Icon name={day.weather[0].icon} /></div>
+                    <div className="temp">{Math.round(day.main.temp_min)}&deg; | {Math.round(day.main.temp_max)}&deg;</div>
                 </div>
             ))}
 
